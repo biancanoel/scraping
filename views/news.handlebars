@@ -1,0 +1,29 @@
+<body>
+    <div class="row">
+
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Breaking News from the American Riviera</h1>
+        </div>
+
+        <div class="col-md-4 col-md-offset-4">
+            <h2>Click to assemble the news team for the latest news</h2>
+            <button type="button" id="get-news">ASSEMBLE</button>
+        </div>
+
+        <div class="row">
+             {{#each news}}
+            <div class="col-md-3">
+                <a href={{link}}>
+                    <h3 data-id={{_id}}> {{headline}} </h3>
+                </a>
+            </div>
+            {{/each}}
+        </div>
+
+
+    </div>
+
+
+
+
+</body>
