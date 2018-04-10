@@ -9,19 +9,40 @@
             <h2>Click to assemble the news team for the latest news</h2>
             <button type="button" id="get-news">ASSEMBLE</button>
         </div>
+    </div>
 
-        <div class="row">
-             {{#each news}}
-            <div class="col-md-3">
-                <a href={{link}}>
-                    <h3 data-id={{_id}}> {{headline}} </h3>
-                </a>
-            </div>
+
+    <div class="row">
+        <!--news articles go here -->
+        <div class="col-md-3" id="articles">
+            {{#each news}}
+            <span class="article-box">
+            <a href={{link}}>
+                <h3 class="news-article" > {{headline}} </h3>
+            </a>
+            <button class="leave-comment" data-id={{_id}}> Comment </button>
+            </span>
             {{/each}}
         </div>
 
+        <!--comment box goes here -->
+        <div class="col-md-4 col-md-offset-2 comment-box">
+            <h3 class= "article-title"> Article title</h3>
+
+            <input type="text" id = "comment-title"  name ="comment-title">
+
+            <textarea name="comment-body" id="comment-body" cols="30" rows="10"></textarea>
+            <button class="save-comment" data-id={{_id}}> Save comment </button>
+            <button class="delete-comment"> Delete comment </button> 
+
+        </div>
 
     </div>
+
+
+
+
+
 
 
 
