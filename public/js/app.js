@@ -3,7 +3,9 @@ $("#get-news").on("click", function (event) {
     $.ajax({
         method: "GET",
         url: "/scrape"
-    });
+    }).then(function(data){
+        location.reload();
+    })
 });
 
 //Go to saved articles page

@@ -33,6 +33,7 @@ module.exports = function (app) {
             if (err) console.log(err);
             // results from weather: console.log(JSON.stringify(result, null, 2));
             db.Article.find({saved:true})
+            .populate('note')
             .then(function (dbArticle) {
                 var newsObj = {
                     news: dbArticle,
@@ -42,7 +43,7 @@ module.exports = function (app) {
                     sky: result[0].current.skytext
                 };
                 res.render("saved", newsObj);
-                //console.log(newsObj);
+                console.log(newsObj);
             });
         });
     });
@@ -75,7 +76,7 @@ module.exports = function (app) {
                     });
             });
 
-            res.send("scrape complete");
+            res.send('scrape complete');
         });
     });
 

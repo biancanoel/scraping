@@ -42,7 +42,7 @@
 
                 </a>
                 <h4 class="subtitle"> {{subtitle}} </h4>
-                <button class="leave-comment btn btn-info" data-id={{_id}}> Comment </button>
+                <button class="leave-comment btn btn-info" data-id={{_id}}> Comment {{#if note}} (1) {{/if}}</button>
                 {{#unless saved}}
                 <button class="save-article btn btn-primary" data-id={{_id}} data-saved={ {saved}}> Save </button>
                 {{/unless}} {{#if saved}}
@@ -52,16 +52,6 @@
             {{/each}}
         </div>
 
-        <!--comment box goes here -->
-        {{!--
-        <div class="col-md-4 col-md-offset-2 comment-box">
-            <h3 class="article-title"> Article title</h3>
-
-            <input type="text" id="comment-title" name="comment-title">
-
-            <textarea name="comment-body" id="comment-body" cols="30" rows="10"></textarea>
-            <button class="save-comment" data-id={{_id}}> Save comment </button>
-            <button class="delete-comment"> Delete comment </button>
 
         </div> --}} {{!-- modal shit for adding comment --}}
         <div id="myModal" class="modal fade" role="dialog">
