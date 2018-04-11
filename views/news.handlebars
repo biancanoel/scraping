@@ -1,4 +1,4 @@
-<body>
+
 
     <ul class="nav nav-pills">
         <li role="presentation" class="active">
@@ -30,7 +30,7 @@
             <h5>{{sky}} Skies</h5>
             <h5>Temperature: {{temperature}}&#8457; </h5>
             <h5>Feels Like: {{feelslike}}&#8457;</h5>
-            
+
         </div>
 
         <!--news articles go here -->
@@ -46,72 +46,58 @@
                 {{#unless saved}}
                 <button class="save-article btn btn-primary" data-id={{_id}} data-saved={ {saved}}> Save </button>
                 {{/unless}} {{#if saved}}
-                <button class="btn btn-dark" data-id={{_id}} data-saved={{saved}} > Article Saved Already </button>
+                <button class="btn btn-dark" data-id={{_id}} data-saved={{saved}}> Article Saved Already </button>
                 {{/if}}
             </span>
             {{/each}}
         </div>
 
 
-        </div> --}} {{!-- modal shit for adding comment --}}
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="article-title"> Article title</h3>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-sm-8 col-sm-offset-4 comment-box">
-                                <input type="text" id="comment-title" name="comment-title">
-                            </div>
-                            <div class="col-sm-8 col-sm-offset-4">
-                                <textarea name="comment-body" id="comment-body" cols="30" rows="5"></textarea>
-                            </div>
-                            <div class="col-sm-8 col-sm-offset-4"> 
-                                <button class="save-comment btn btn-info" data-id={{_id}}> Save comment </button>
-                                <button class="delete-comment btn btn-danger"> Delete comment </button>
-                            </div>
+    </div> --}} {{!-- modal shit for adding comment --}}
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="article-title"> Article title</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-4 comment-box">
+                            <input type="text" id="comment-title" name="comment-title">
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary close-modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        {{!-- modal shit for saving article --}}
-        <div id="myModal2" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="article-title"> Wonderful!</h3>
-                    </div>
-                    <div class="modal-body">
-                        <h3>This article has been saved. </h3>
+                        <div class="col-sm-8 col-sm-offset-4">
+                            <textarea name="comment-body" id="comment-body" cols="30" rows="5"></textarea>
+                        </div>
+                        <div class="col-sm-8 col-sm-offset-4">
+                            <button class="save-comment btn btn-info" data-id={{_id}}> Save comment </button>
+                            <button class="delete-comment btn btn-danger"> Delete comment </button>
+                        </div>
                     </div>
 
                 </div>
-                <div class="modal-footer">You're welcome </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-modal">Close</button>
+                </div>
             </div>
 
         </div>
     </div>
 
+    {{!-- modal shit for saving article --}}
+    <div id="myModal2" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="article-title"> Wonderful!</h3>
+                </div>
+                <div class="modal-body">
+                    <h3>This article has been saved. </h3>
+                </div>
 
-
+            </div>
+            <div class="modal-footer">You're welcome </div>
+        </div>
 
     </div>
-
-
-
-
-
-
-
-
-
-</body>
+    </div>
+    </div>
