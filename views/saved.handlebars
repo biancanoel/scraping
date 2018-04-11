@@ -2,7 +2,7 @@
 
     <ul class="nav nav-pills">
         <li role="presentation">
-            <a href="/">Home</a>
+            <a href="/" class="home">Home</a>
         </li>
         <li role="presentation" class="active">
             <a href="#">View Saved Articles</a>
@@ -18,17 +18,26 @@
 
 
     <div class="row main-section">
+        {{!-- weatherinfo --}}
+        <div class="col-md-3  weather-box">
+            <h4 class="weather-date">Santa Barbara Weather Today</h4>
+             <h5>{{sky}} Skies</h5>
+            <h5>Temperature: {{temperature}}&#8457; </h5>
+            <h5>Feels Like: {{feelslike}}&#8457;</h5>
+
+        </div>
+
         <!--news articles go here -->
-        <div class="col-md-6 col-md-offset-4" id="articles">
+        <div class="col-md-6 col-md-offset-1 col-sm-8 col-sm-offset-1" id="articles">
             {{#each news}}
             <span class="article-box">
-                <a href={{link}}>
+                <a href={{link}} target="_blank">
                     <h3 class="news-article"> {{headline}} </h3>
 
                 </a>
                 <h4 class="subtitle"> {{subtitle}} </h4>
-                <button class="leave-comment btn btn-info" data-id={{_id}}> Comment </button> 
-                
+                <button class="leave-comment btn btn-info" data-id={{_id}}> Comment </button>
+
             </span>
             {{/each}}
         </div>
@@ -44,10 +53,7 @@
             <button class="save-comment" data-id={{_id}}> Save comment </button>
             <button class="delete-comment"> Delete comment </button>
 
-        </div> --}}
-
- 
-        {{!-- modal shit for adding comment --}}
+        </div> --}} {{!-- modal shit for adding comment --}}
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -62,7 +68,7 @@
                             <div class="col-sm-8 col-sm-offset-4">
                                 <textarea name="comment-body" id="comment-body" cols="30" rows="5"></textarea>
                             </div>
-                            <div class="col-sm-8 col-sm-offset-4"> 
+                            <div class="col-sm-8 col-sm-offset-4">
                                 <button class="save-comment btn btn-info" data-id={{_id}}> Save comment </button>
                                 <button class="delete-comment btn btn-danger"> Delete comment </button>
                             </div>

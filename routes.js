@@ -1,6 +1,7 @@
 var axios = require("axios");
 var cheerio = require("cheerio");
 var db = require("./models/index.js");
+var weather = require('weather-js');
 
 
 module.exports = function (app) {
@@ -8,30 +9,42 @@ module.exports = function (app) {
 
     //home page. should route to news.handlebar
     app.get('/', function (req, res) {
-
-        db.Article.find({})
+        weather.find({ search: 'Santa Barbara, CA', degreeType: 'F' }, function (err, result) {
+            if (err) console.log(err);
+            // results from weather: console.log(JSON.stringify(result, null, 2));
+            db.Article.find({})
             .then(function (dbArticle) {
                 var newsObj = {
-                    news: dbArticle
+                    news: dbArticle,
+                    temperature: result[0].current.temperature,
+                    date: result[0].current.date,
+                    feelslike: result[0].current.feelslike,
+                    sky: result[0].current.skytext
                 };
-                //console.log(newsObj);
-
                 res.render("news", newsObj);
+                //console.log(newsObj);
             });
+        });
     });
 
     //View Saved Articles. routes to saved.handlebars
     app.get('/saved', function (req, res) {
-
-        db.Article.find({saved: true})
+        weather.find({ search: 'Santa Barbara, CA', degreeType: 'F' }, function (err, result) {
+            if (err) console.log(err);
+            // results from weather: console.log(JSON.stringify(result, null, 2));
+            db.Article.find({saved:true})
             .then(function (dbArticle) {
                 var newsObj = {
-                    news: dbArticle
+                    news: dbArticle,
+                    temperature: result[0].current.temperature,
+                    date: result[0].current.date,
+                    feelslike: result[0].current.feelslike,
+                    sky: result[0].current.skytext
                 };
-                console.log(newsObj);
-
                 res.render("saved", newsObj);
+                //console.log(newsObj);
             });
+        });
     });
 
     //Scrape articles
@@ -47,7 +60,8 @@ module.exports = function (app) {
                 result.headline = $(this).children("a").text();
                 result.link = $(this).children("a").attr("href");
                 result.subtitle = $(this).next().text().trim();
-                //console.log(result.subtitle);
+                //need to add https://www.independent.com before each link
+                //console.log(result.link);
 
 
                 //Add new object into MondoDb using Article model

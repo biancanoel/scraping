@@ -6,13 +6,23 @@ $("#get-news").on("click", function (event) {
     });
 });
 
+//Go to saved articles page
 $(".view-saved").on("click", function (){
     console.log("saved has been clicked");
     $.ajax({
         method:"GET", 
         url:"/saved"
-    })
-})
+    });
+});
+
+//Go to home page
+$(".home").on("click", function (){
+    console.log("homed has been clicked");
+    $.ajax({
+        method:"GET", 
+        url:"/"
+    });
+});
 
 //When Comment button is clicked, generate note and allow user to leave/update note
 $(".leave-comment").on("click", function(){
@@ -113,3 +123,4 @@ $(document).on("click", ".delete-comment", function(){
 $(document).on("click", ".close-modal", function (){
     $('#myModal').modal('hide');
 })
+
