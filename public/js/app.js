@@ -16,9 +16,9 @@ $(".view-saved").on("click", function (){
 
 //When Comment button is clicked, generate note and allow user to leave/update note
 $(".leave-comment").on("click", function(){
-    $(".article-title").empty();
-    $("#comment-title").empty();
-    $("#comment-body").empty();
+    event.preventDefault()
+    $('#myModal').modal()
+
   
     var id = $(this).attr("data-id");
     $(".submit-comment").attr("data-id", id);
@@ -59,7 +59,10 @@ $(".save-article").on("click", function (){
         }
         
     }).then(function(data){
-        alert(`the article with id ${id} saved settings have been modified!`)
+      
+        
+        event.preventDefault()
+        $('#myModal2').modal()
     })
 })
 
@@ -79,13 +82,16 @@ $(document).on('click', ".save-comment", function (){
         }
     })
     .then(function(data){
+        setInterval($(function(){
+            $('#myModal').modal('hide')
+        }), 2000);
         console.log(data);
     });
 });
 
 //Delete note 
 $(document).on("click", ".delete-comment", function(){
-
+    event.preventDefault()
     var id = $(this).attr("data-id");
     console.log("id of note to be deleted is "+id);
 
@@ -95,9 +101,15 @@ $(document).on("click", ".delete-comment", function(){
     })
     .then(function(data){
         console.log('note has been deleted');
+
+        $(".article-title").text("");
+        $("#comment-title").text("");
+        $("#comment-body").text("");
     });
 
-    $(".article-title").empty();
-    $("#comment-title").empty();
-    $("#comment-body").empty();
+  
 });
+
+$(document).on("click", ".close-modal", function (){
+    $('#myModal').modal('hide');
+})
