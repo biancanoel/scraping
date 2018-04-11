@@ -1,0 +1,30 @@
+* {
+    font-family: 'Source Serif Pro', serif;
+}
+
+.top {
+ background-image: url("/img/sb.jpg");
+ text-align: center;
+ color: white;
+ font-weight: 700;
+ background-repeat: no-repeat;
+ background-attachment: scroll;
+ background-position: center center;
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+ height: 400px;
+}
+
+.get-news-btn {
+    margin-top: 20%
+}
+
+.main-section {
+    background: #ADA996;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+
+}
