@@ -147,7 +147,9 @@ module.exports = function (app) {
             if (!err) {
                 console.log("note was deleted. xo - the backend");
                 console.log(req.params.articleid);
-                return db.Article.update({_id: req.params.articleid}, {$unset: {note: ""}})
+                return db.Article.update({_id: req.params.articleid}, {$unset: {note: ""}}).then(function (data){
+                    console.log(data);
+                })
 
                 //this query works in mongo to delete the note from the article collection
                 //db.getCollection('articles').update({"_id": ObjectId('5aceac175857b21289cbafed')}, {$unset: {note: ""}});
