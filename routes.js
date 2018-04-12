@@ -101,11 +101,15 @@ module.exports = function (app) {
                 return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true })
             })
             .then(function (dbArticle) {
-                res.json(dbArticle)
+                
+                //res.json(dbArticle);
+                res.send("comment added");
+                
             })
             .catch(function (err) {
                 console.log(err)
             });
+            
     });
 
     //Save article to Saved Articles
@@ -136,13 +140,22 @@ module.exports = function (app) {
 
 
     //Delete a comment
-    app.delete("/delete/:id", function (req, res) {
+    app.delete("/delete/:id/:articleid", function (req, res) {
+        console.log(`req.params.NOTE id for delete is ${req.params.id}`)
+        console.log(`req.params.articleid for delete is ${req.params.articleid}`)
         db.Note.remove({ _id: req.params.id }, function (err) {
             if (!err) {
-                console.log("note was deleted. xo - the backend")
+                console.log("note was deleted. xo - the backend");
+                console.log(req.params.articleid);
+                return db.Article.update({_id: req.params.articleid}, {$unset: {note: ""}})
+
+                //this query works in mongo to delete the note from the article collection
+                //db.getCollection('articles').update({"_id": ObjectId('5aceac175857b21289cbafed')}, {$unset: {note: ""}});
+                
             } else {
                 console.log("something went wrong deleting note, xo - the backend")
             };
+            res.send("deleted");
         });
     });
 

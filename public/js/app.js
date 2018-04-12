@@ -28,12 +28,10 @@ $(".home").on("click", function (){
 
 //When Comment button is clicked, generate note and allow user to leave/update note
 $(".leave-comment").on("click", function(){
-    event.preventDefault()
-    $('#myModal').modal()
-
-  
+    //gets id of article
     var id = $(this).attr("data-id");
     $(".submit-comment").attr("data-id", id);
+
 
     $.ajax({
         method: "GET",
@@ -41,14 +39,21 @@ $(".leave-comment").on("click", function(){
     })
     .then(function(data){
         console.log("this is what we get back "+JSON.stringify(data));
+        event.preventDefault()
+        $('#myModal').modal()
         $(".article-title").text(data.headline);
         $(".save-comment").attr("data-id", data._id); 
       
         if(data.note) {
             $("#comment-title").val(data.note.title);
             $("#comment-body").val(data.note.body);
-            $(".delete-comment").attr("data-id", data.note._id)
-        } 
+            $(".delete-comment").attr("data-id", data.note._id);
+            $(".delete-comment").attr("article-id", id);
+
+        }  else {
+            $("#comment-title").empty();
+            $("#comment-body").empty();
+        }
     })
 
 });
@@ -61,8 +66,6 @@ $(".save-article").on("click", function (){
     if (isSaved) {
         isSaved = false
     };
-   
-
     $.ajax({
         method: "POST",
         url: "/update/"+id,
@@ -71,10 +74,12 @@ $(".save-article").on("click", function (){
         }
         
     }).then(function(data){
-      
+        event.preventDefault();
+        $('#myModal2').modal();
+        $(".save-article[data-id="+id+"]").html("Article Already Saved").attr("class", "btn btn-dark");
+
         
-        event.preventDefault()
-        $('#myModal2').modal()
+        
     })
 })
 
@@ -94,10 +99,12 @@ $(document).on('click', ".save-comment", function (){
         }
     })
     .then(function(data){
-        setInterval($(function(){
-            $('#myModal').modal('hide')
-        }), 2000);
+        $('#myModal').modal('hide');
+        $(".leave-comment[data-id="+id+"]").html("Comment");
         console.log(data);
+
+
+        
     });
 });
 
@@ -105,18 +112,23 @@ $(document).on('click', ".save-comment", function (){
 $(document).on("click", ".delete-comment", function(){
     event.preventDefault()
     var id = $(this).attr("data-id");
+    var articleid= $(".delete-comment").attr("article-id");
     console.log("id of note to be deleted is "+id);
+    console.log("id of article to be deleted is "+articleid);
 
     $.ajax({
         method: "DELETE", 
-        url: "/delete/"+id
+        url: "/delete/"+id+"/"+articleid,
+        data: articleid,
     })
     .then(function(data){
-        console.log('note has been deleted');
+        console.log(data);
 
         $(".article-title").text("");
         $("#comment-title").text("");
         $("#comment-body").text("");
+
+        //$(".leave-comment[data-id="+id+"]").html("Comment");
     });
 
   

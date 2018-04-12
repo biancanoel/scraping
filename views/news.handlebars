@@ -44,9 +44,9 @@
                 <h4 class="subtitle"> {{subtitle}} </h4>
                 <button class="leave-comment btn btn-info" data-id={{_id}}> Comment {{#if note}} (1) {{/if}}</button>
                 {{#unless saved}}
-                <button class="save-article btn btn-primary" data-id={{_id}} data-saved={ {saved}}> Save </button>
+                <button class="save-article btn btn-primary" data-id={{_id}} data-saved={{saved}}> Save </button>
                 {{/unless}} {{#if saved}}
-                <button class="btn btn-dark" data-id={{_id}} data-saved={{saved}}> Article Saved Already </button>
+                <button  class="btn btn-dark" data-id={{_id}} data-saved={{saved}}> Article Saved Already </button>
                 {{/if}}
             </span>
             {{/each}}
@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-sm-8 col-sm-offset-4">
                             <button class="save-comment btn btn-info" data-id={{_id}}> Save comment </button>
-                            <button class="delete-comment btn btn-danger"> Delete comment </button>
+                            <button class="delete-comment btn btn-danger" > Delete comment </button>
                         </div>
                     </div>
 

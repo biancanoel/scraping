@@ -19,6 +19,11 @@ var ArticleSchema = new Schema ({
         default: false,
         required: true
     },
+    hasComment: {
+        type: Boolean,
+        default: false,
+       
+    },
 
     note: {
         type: Schema.Types.ObjectId,
